@@ -1,0 +1,23 @@
+FROM registry.gear.ge.com/predix_edge/node-amd64
+MAINTAINER Stephanie Kuhne <stephanie.kuhne@ge.com>
+
+COPY dist /www/
+
+WORKDIR /www
+
+RUN set -ex \
+	&& apk add --no-cache --virtual .build-deps  \
+		ca-certificates \
+		curl \
+		\
+		# GE network builds ... removed with build dependencies
+		&& curl -fSsL "https://static.gecirtnotification.com/browser_remediation/packages/GE_External_Root_CA_2_1.crt" -o /usr/local/share/ca-certificates/GE_External_Root_CA_2_1.crt \
+		&& update-ca-certificates \
+		\
+		&& npm install --production \
+		\
+		&& rm /usr/local/share/ca-certificates/GE_External_Root_CA_2_1.crt \
+		&& update-ca-certificates \
+		&& apk del .build-deps
+
+CMD npm start

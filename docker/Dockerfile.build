@@ -1,0 +1,19 @@
+FROM node:8
+#FROM registry.gear.ge.com/predix_edge/node-amd64
+MAINTAINER Stephanie Kuhne <stephanie.kuhne@ge.com>
+
+RUN set -ex \
+	&& apt install  \
+#		ca-certificates \
+		bash \
+		make \
+		g++ \
+		python \
+		git \
+		curl
+
+
+
+RUN npm install bower -g \
+	&& npm install gulp -g \
+	&& npm install gulp-cli -g

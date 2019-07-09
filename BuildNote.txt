@@ -1,0 +1,8 @@
+make clean
+make
+npm rebuild node-sass
+
+
+after the build is done, use:
+
+gulp

@@ -1,0 +1,8 @@
+{
+    "id": 3,
+    "eventType": "turn off",
+    "person_id": "3",
+    "asset_id": "1",
+    "created_at": "create today",
+    "eventInfo": 42.2
+ }
